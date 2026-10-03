@@ -2,43 +2,46 @@ const Header = (props) => {
   return <h1>{props.course}</h1>
 }
 
+const Part = (props) => {
+  return (
+    <p>
+      {props.name} {props.units}
+    </p>
+  )
+}
+
 const Content = (props) => {
   return (
     <div>
-      <p>{props.part1} {props.units1}</p>
-      <p>{props.part2} {props.units2}</p>
-      <p>{props.part3} {props.units3}</p>
+      <Part name={props.parts[0].name} units={props.parts[0].units} />
+      <Part name={props.parts[1].name} units={props.parts[1].units} />
+      <Part name={props.parts[2].name} units={props.parts[2].units} />
     </div>
   )
 }
 
 const Total = (props) => {
-  return <p>Number of units {props.total}</p>
-}
-
-const Footer = (props) => {
-  return <footer>{props.fullName} - {props.courseCode} - {props.section}</footer>
+  return (
+    <p>
+      Number of units{' '}
+      {props.parts[0].units + props.parts[1].units + props.parts[2].units}
+    </p>
+  )
 }
 
 const App = () => {
-const course = 'Bachelor of Scicence in Information Technology'
-const part1 = 'Data Structures and Algorithms'
-const units1 = 3
-const part2 = 'Web Systems and Technologies'
-const units2 = 3
-const part3 = 'Discrete Mathematics'
-const units3 = 3
+  const course = 'Web Systems and Technologies'
+  const parts = [
+    { name: 'Data Structures and Algorithms', units: 3 },
+    { name: 'Discrete Structures', units: 3 },
+    { name: 'Networking2', units: 1 },
+  ]
 
   return (
     <div>
       <Header course={course} />
-      <Content
-        part1={part1} units1={units1}
-        part2={part2} units2={units2}
-        part3={part3} units3={units3}
-      />
-      <Total total={units1 + units2 + units3} />
-      <Footer fullName="Jundyll kendrich Jaca" courseCode="CSIT340" section="G8" />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </div>
   )
 }
