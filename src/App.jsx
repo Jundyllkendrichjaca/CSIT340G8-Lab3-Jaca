@@ -49,7 +49,9 @@ const App = () => {
       <Total parts={course.parts} />
       <Footer fullName={fullName} courseCode={courseCode} section={section} />
     </div>
+    
   )
 }
+
 
 export default App
